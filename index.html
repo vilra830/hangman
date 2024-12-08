@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./script.js" type="module" defer></script>
     <title>Hangman</title>
     <style>
+      /* * {
+        border: 1px solid orangered;
+      } */
       h1 {
         text-align: center;
       }
@@ -17,58 +21,49 @@
         }
       }
 
-      .keyboard {
-        width: 100%;
-        gap: 5px;
+      #keyboard {
+        margin-left: 25%;
+        width: 50%;
+        padding: 30px;
+        gap: 10px;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+
+        .letters {
+          font-size: xx-large;
+        }
+      }
+      .dashes {
+        gap: 15px;
+        padding: 10px;
+      }
+
+      #user-input-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     </style>
   </head>
 
   <body>
-    <h1>Welcome to Hangman</h1>
-    <div class="container">
-      <div class="box hangman__img">
-        <img src="./img/h-10.jpg" id="starting_img" />
-      </div>
-      <div class="box keyboard">
-        <div class="row-one">
-          <button>Q</button>
-          <button>W</button>
-          <button>E</button>
-          <button>R</button>
-          <button>T</button>
-          <button>Y</button>
-          <button>U</button>
-          <button>I</button>
-          <button>O</button>
-          <button>P</button>
-        </div>
-        <div class="row-two">
-          <button>A</button>
-          <button>S</button>
-          <button>D</button>
-          <button>F</button>
-          <button>G</button>
-          <button>H</button>
-          <button>J</button>
-          <button>K</button>
-          <button>L</button>
-        </div>
-        <div class="row-three">
-          <button>Z</button>
-          <button>X</button>
-          <button>C</button>
-          <button>V</button>
-          <button>B</button>
-          <button>B</button>
-          <button>N</button>
-          <button>M</button>
-        </div>
-      </div>
+    <h1 class="header">Welcome to Hangman</h1>
+    <div id="new-game">
+      <button id="new-game-button">New Game</button>
     </div>
+
+    <div class="container">
+      <div class="hangman-img">
+        <img id="starting_img" src="./img/h-10.jpg" />
+      </div>
+      <div id="user-input-section"></div>
+    </div>
+
+    <div id="keyboard"></div>
+    <div id="result-text"></div>
   </body>
 </html>
