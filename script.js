@@ -55,6 +55,7 @@ const startGame = () => {
   newGameButton.style.display = "none";
   let randWords = getRandomWord().toUpperCase();
   let displayItem = randWords.replace(/./g, '<span class="dashes">_</span>');
+  userInputSection.innerHTML = `<p> The word has ${displayItem.length} letters <p>`;
   userInputSection.innerHTML = displayItem;
   hangmanImage.src = "././img/h-4.jpg";
 
