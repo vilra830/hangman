@@ -1,8 +1,7 @@
 export const createEl = (elType, textVal, parent, cls, className) => {
-  const el = document.createElement(elType); //for example "p"
-  el.innerText = textVal;
-  el.setAttribute(cls, className);
-  parent.appendChild(el);
+  elType.innerText = textVal;
+  elType.setAttribute(cls, className);
+  parent.appendChild(elType);
 };
 
 export const removeEl = (el, parent) => {

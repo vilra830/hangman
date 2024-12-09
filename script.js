@@ -42,14 +42,8 @@ const keyboardKeys = [
 
 const reset = () => {
   newGameButton.style.display = "block";
-  userInputSection.innerHTML = "";
-  const letters = document.querySelectorAll(".letters");
-  console.log(letters.length);
-  letters.forEach((button) => {
-    keyboard.removeChild(button);
-  });
-  console.log(letters.length);
-
+  userInputSection.innerText = "";
+  keyboard.innerHTML = "";
   hangmanImage.src = "././img/h-10.jpg";
   correctLetters = 0;
   wrongLetters = 0;
@@ -59,18 +53,14 @@ const reset = () => {
 const startGame = () => {
   resultText.innerHTML = "";
   newGameButton.style.display = "none";
-
   let randWords = getRandomWord().toUpperCase();
-  let displayItem = randWords.replace(/./g, '<span class="dashes">___</span>');
+  let displayItem = randWords.replace(/./g, '<span class="dashes">_</span>');
   userInputSection.innerHTML = displayItem;
   hangmanImage.src = "././img/h-4.jpg";
 
   for (let i = 0; i < keyboardKeys.length; i++) {
     const button = document.createElement("button");
-    button.innerText = keyboardKeys[i];
-    // createEl("button", keyboardKeys[i], keyboard, "class", "letters");
-    button.setAttribute("class", "letters");
-    keyboard.appendChild(button);
+    createEl(button, keyboardKeys[i], keyboard, "class", "letters");
     button.addEventListener("click", () => {
       let randWord = randWords.split("");
       console.log(randWord);
@@ -80,9 +70,8 @@ const startGame = () => {
           if (char === button.innerText) {
             dashes[index].innerHTML = char;
             correctLetters += 1;
-
             if (correctLetters === randWord.length) {
-              resultText.innerHTML = `<h2>You guessed it right</h2><p>The word was <span>${randWord.join(
+              resultText.innerHTML = `<h2>You guessed it right!!!</h2 class="winner"><p class="winner">The word was <span>${randWord.join(
                 ""
               )}</span>.</p>`;
               reset();
@@ -91,27 +80,12 @@ const startGame = () => {
         });
       } else {
         wrongLetters += 1;
-        //  console.log(wrongLetters);
-        if (wrongLetters === 1) {
-          hangmanImage.src = "././img/h-5.jpg";
-        }
-        if (wrongLetters === 2) {
-          hangmanImage.src = "././img/h-6.jpg";
-        }
-        if (wrongLetters === 3) {
-          hangmanImage.src = "././img/h-7.jpg";
-        }
-        if (wrongLetters === 4) {
-          hangmanImage.src = "././img/h-8.jpg";
-        }
-        if (wrongLetters === 5) {
-          hangmanImage.src = "././img/h-9.jpg";
-        }
-
+        wrongCountimage(wrongLetters);
         if (wrongLetters === 6) {
           hangmanImage.src = "././img/h-10.jpg";
-          resultText.innerHTML = `<h2> You lose</h2>`;
-
+          resultText.innerHTML = `<h2 class="lost"> You lose</h2><p  class="lost">The word was <span>${randWord.join(
+            ""
+          )}</span>.</p>`;
           reset();
         }
       }
@@ -120,9 +94,29 @@ const startGame = () => {
   }
 };
 
-const createKeyboard = () => {
-  for (let i = 0; i < keyboardKeys.length; i++) {
-    createEl;
+//image that correponds to the number of wrong letters
+const wrongCountimage = (wrongLetters) => {
+  switch (wrongLetters) {
+    case 1:
+      hangmanImage.src = "././img/h-5.jpg";
+      break;
+    case 2:
+      hangmanImage.src = "././img/h-6.jpg";
+      break;
+    case 3:
+      hangmanImage.src = "././img/h-7.jpg";
+      break;
+    case 4:
+      hangmanImage.src = "././img/h-8.jpg";
+      break;
+    case 5:
+      hangmanImage.src = "././img/h-9.jpg";
+      break;
+    case 6:
+      hangmanImage.src = "././img/h-10.jpg";
+      break;
+    default:
+      break;
   }
 };
 
