@@ -1,4 +1,5 @@
 import data from "./example-words.json" with {type: "json"};
+
 console.log(data, "data");
 
 
